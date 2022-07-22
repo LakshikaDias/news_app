@@ -1,4 +1,5 @@
 import React from "react";
+import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import newsList from "./newslist";
 
@@ -6,18 +7,21 @@ const Home = () => {
   return (
     <div>
       <div>News List.................</div>
-      {newsList.map(function display(news) {
-        return (
-          <div>
-            <ul>
-              <li>
-                <Link to={`news/${news.headline}`}>{news.headline}</Link>
-                <p>{news.summary}</p>
-              </li>
-            </ul>
-          </div>
-        );
-      })}
+      <div>
+        {newsList.map(function display(news) {
+          return (
+            <Card style={{ width: "60rem" }} className="mb-2" bg="light">
+              <Card.Header>{news.headline}</Card.Header>
+              <Card.Body>
+                <Card.Text>{news.summary}</Card.Text>
+                <Link to={`news/${news.headline}`}>
+                  <Button>See more...</Button>
+                </Link>
+              </Card.Body>
+            </Card>
+          );
+        })}
+      </div>
     </div>
   );
 };
